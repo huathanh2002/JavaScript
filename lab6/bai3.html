@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #anh {
+            margin-left: 500px;
+            margin-top: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--em k có tài nguyên như trong bài tập lên lấy 2 ảnh khác nhau ạ !-->
+    <img onmouseover="fover()" onmouseout="fout()" id="anh" src="img/anh0.jpg" alt="">
+    <hr>
+    <div style="margin-left: 600px;">
+        <button onclick="First()">First</button>
+        <button onclick="Prev()">Prev</button>
+        <button onclick="Next()">Next</button>
+        <button onclick="Last()">Last</button>
+    </div>
+    <script>
+        var anh0 = new Image();
+        anh0.src = "img/anh0.jpg";
+        var anh1 = new Image();
+        anh1.src = "img/anh1.jpg";
+        function fover() {
+            var anh = document.getElementById("anh");
+            anh.src = anh0.src;
+        }//khi chỏ chuột vào ảnh sẽ hiện sang ảnh 1
+        function fout() {
+            var anh = document.getElementById("anh");
+            anh.src = anh1.src;
+        }//khi buông chuột ra khỏi ảnh lặp tức quay về ảnh 0
+        var mangAnh = [];
+        var currentIndex = 0;
+        for (var i = 0; i < 5; i++) {
+            mangAnh[i] = new Image();
+            mangAnh[i].src = "img/anh" + i + ".jpg"
+        }
+        function Next() {//button next
+            if (currentIndex == mangAnh.length - 1) { // Nếu hiện tại là ảnh cuối cùng, chuyển sang ảnh đầu tiên
+                currentIndex = 0;
+            } else { // Ngược lại chuyển sang ảnh kế tiếp
+                currentIndex++;
+            }
+            document.getElementById("anh").src = mangAnh[currentIndex].src; //Hiển thị ảnh mới
+        }
+        function First() {
+            currentIndex = 0; // Thiết lập lại vị trí hiện tại của ảnh
+            document.getElementById("anh").src = mangAnh[currentIndex].src; // Hiển thị ảnh đầu tiên
+
+        }
+        function Prev() {
+
+            if (currentIndex == 0) { // Nếu hiện tại là ảnh đầu tiên, chuyển sang ảnh cuối cùng
+                currentIndex = mangAnh.length - 1;
+            } else { // Ngược lại chuyển sang ảnh trước đó
+                currentIndex--;
+            }
+            document.getElementById("anh").src = mangAnh[currentIndex].src; // Hiển thị ảnh mới
+        }
+        function Last() {
+            currentIndex = mangAnh.length - 1; // Thiết lập lại vị trí hiện tại của ảnh
+            document.getElementById("anh").src = mangAnh[currentIndex].src; // Hiển thị ảnh cuối cùng
+
+        }
+    </script>
+</body>
+
+</html>

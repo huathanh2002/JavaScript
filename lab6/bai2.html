@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+
+            margin: auto;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: rgb(241, 235, 235);
+        }
+
+        .x {
+            color: rgb(109, 176, 214);
+        }
+
+        .o {
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <b style="margin-left: 720px;">TICTACTOE GAME</b>
+    <table>
+        <tr>
+            <td id="00"></td>
+            <td id="01"></td>
+            <td id="02"></td>
+        </tr>
+        <tr>
+            <td id="10"></td>
+            <td id="11"></td>
+            <td id="12"></td>
+        </tr>
+        <tr>
+            <td id="20"></td>
+            <td id="21"></td>
+            <td id="22"></td>
+        </tr>
+    </table>
+
+
+    <script>
+        // Tạo biến lưu trữ thông tin bảng
+        var board = [
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""],
+        ];
+
+        // Tạo biến lưu trữ lượt chơi
+        var currentPlayer = "x";
+
+        // Lấy tất cả ô vuông và gắn sự kiện click
+        var squares = document.getElementsByTagName("td");
+        for (var i = 0; i < squares.length; i++) {
+            squares[i].addEventListener("click", function () {
+                // Kiểm tra ô vuông có giá trị rỗng không
+                if (this.innerHTML === "") {
+                    // Gán giá trị của ô vuông tương ứng
+                    this.innerHTML = currentPlayer;
+                    // Lưu giá trị vào biến board
+                    var row = this.id[0];
+                    var col = this.id[1];
+                    board[row][col] = currentPlayer;
+                    // Thay đổi lượt chơi
+                    currentPlayer = currentPlayer === "x" ? "o" : "x";
+                    // Thêm lớp và đặt màu sắc tương ứng
+                    if (currentPlayer === "o") {
+                        this.classList.add("o");
+                        this.style.backgroundColor = "rgb(76, 218, 236)";
+                    } else {
+                        this.classList.add("x");
+                        this.style.backgroundColor = "yellow";
+                    }
+                    // Kiểm tra kết thúc game
+                    var winner = checkWinner();
+                    if (winner) {
+                        alert("Winner: " + winner);
+                    }
+                }
+            });
+        }
+
+        // Hàm kiểm tra kết thúc game
+        function checkWinner() {
+            // Kiểm tra hàng ngang
+            for (var i = 0; i < 3; i++) {
+                if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== "") {
+                    return board[i][0];
+                }
+            }
+            // Kiểm tra hàng dọc
+            for (var j = 0; j < 3; j++) {
+                if (board[0][j] === board[1][j] && board[1][j] === board[2][j] && board[0][j] !== "") {
+                    return board[0][j];
+                }
+            }
+            // Kiểm tra đường chéo
+            if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== "") {
+                return board[0][0];
+            }
+            if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== "") {
+                return board[0][2];
+            }
+            // Kiểm tra hòa
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    if (board[i][j] === "") {
+                        return null;
+                    }
+                }
+            }
+            return "hòa";
+        }
+
+    </script>
+</body>
+
+</html>

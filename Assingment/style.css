@@ -1,0 +1,109 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(231, 241, 241);
+}
+
+.tong {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.banner {
+    width: 1000px;
+    height: 400px
+}
+
+.menu {
+    height: 50px;
+    width: 100%;
+
+}
+
+.menu ul ul {
+    position: absolute;
+    display: none;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    border-radius: 3px;
+    width: 200px;
+    background-color: white;
+    box-shadow: 0 0 1px gray;
+}
+
+.menu ul ul a {
+    display: block;
+    line-height: 30px;
+    color: rgb(17, 17, 19);
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: larger;
+    padding: 0 10px;
+}
+
+.menu>ul>li:hover>ul {
+    display: block;
+}
+
+.menu>ul>li>a {
+    text-decoration: none;
+    font-variant: small-caps;
+    font-size: larger;
+    color: white;
+    padding: 0 10px;
+    line-height: 40px;
+}
+
+.menu>ul>li {
+    display: inline-block;
+    position: relative;
+}
+
+.menu>ul>li>a {
+    display: block;
+}
+
+.menu>ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    border-radius: 3px;
+    background-color: black;
+    text-align: center;
+}
+
+.menu ul li a:hover {
+    color: yellowgreen;
+}
+
+.container {
+    width: 600px;
+    height: 400px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(184, 228, 233);
+    margin: auto;
+}
+
+.btn {
+    margin: 15px 0;
+}
+
+button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    outline: none;
+    border: 1px solid #ccc;
+    margin: 10px;
+    cursor: pointer;
+    transition: .4s;
+
+}
+
+button:hover {
+    background: grey
+}

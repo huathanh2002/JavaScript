@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var childWindow;
+        function openWindow() {
+            fa = window.open("https://ap.poly.edu.vn/", "Cổng thông tin AP của sinh viên cao đẳng FPT Polytechnic", "width=500,height=500");
+        }
+        function closeWindow() {
+            fa.close();
+            childWindow += 1;
+        }
+        function testWindow() {
+            if (childWindow == 0) {
+                alert('Cửa sổ đang mở');
+            } else {
+                alert('Cửa sổ đã đóng');
+            }
+            childWindow = 0;
+        }
+
+    </script>
+    <button onclick="openWindow()">Mở cửa sổ mới</button>
+    <button onclick="closeWindow()">Đóng cửa sổ mới</button>
+    <button onclick="testWindow()">Kiểm tra xem cửa sổ mới đã đóng hay chưa</button>
+</body>
+
+</html>

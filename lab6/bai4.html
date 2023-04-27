@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .output {
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            margin: auto;
+            text-align: center;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            top: 50px;
+            left: 20%;
+            background-color: red;
+        }
+
+        .message {
+            text-align: center;
+            padding: 10px;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="output"></div>
+    <div class="message"></div>
+
+    <script>
+        // Lấy/Thiết lập 2 element
+        const output = document.querySelector('.output');
+        const message = document.querySelector('.message');
+
+        // Thiết lập message bắt đầu, thời gian game bắt đầu và tạo ô vuông (đỏ)
+        let startTime, endTime;
+        message.textContent = "Nhấp vào ô vuông đỏ càng nhanh càng tốt!";
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        const box = document.createElement('div');
+        box.classList.add('box');
+
+        // Tạo vị trí ngẫu nhiên
+        function getRandomLocation() {
+            const width = output.clientWidth - box.clientWidth;
+            const height = output.clientHeight - box.clientHeight;
+            const randomX = getRandomNumber(0, width);
+            const randomY = getRandomNumber(0, height);
+            return [randomX, randomY];
+        }
+
+        // Load ô vuông ngẫu nhiên, lấy thời gian bắt đầu
+        function loadBox() {
+            const randomLocation = getRandomLocation();
+            box.style.top = `${randomLocation[1]}px`;
+            box.style.left = `${randomLocation[0]}px`;
+            startTime = new Date();
+            output.appendChild(box);
+        }
+
+        loadBox();
+
+        // Sự kiện click chuột: tính toán thời lượng và hiển thị thông báo
+        box.addEventListener('click', function () {
+            endTime = new Date();
+            const duration = (endTime - startTime) / 1000;
+            message.textContent = `Bạn đã nhấp vào ô đỏ trong ${duration} giây!`;
+            output.removeChild(box);
+            setTimeout(loadBox, 1000);
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function sinhvien(ten,diem){
+            this.ten=ten;
+            this.diem=diem;
+            this.hocluc=function(){
+                if(diem>=8){
+                    return 'Giỏi';
+                }else if(diem>=7){
+                    return 'Khá';
+                }else if(diem>=5){
+                    return 'Trung bình';
+                  }else if(diem>=5){
+                return 'Yếu';
+
+                 }else{
+                 return 'Kém/yếu';
+        }
+    }
+    this.hienthi=function(){
+        document.write("<h3> Họ và tên:"+ this.ten+"</h3>");
+        document.write("<h3> Điểm:"+ this.diem+"</h3>");
+        document.write("<h3> Học lực:"+ this.hocluc()+"</h3>");
+    }
+}
+    </script>
+</head>
+<body>
+    <script>
+        var sv1=new sinhvien("cao huy hoàng",10);
+        sv1.hienthi();
+        document.write("-----------------");
+        var sv2=new sinhvien("Nguyễn Văn Hải",1);
+        sv2.hienthi();
+        document.write("-----------------");
+        var sv3=new sinhvien("Nguyễn Tô Tùng",9.5);
+        sv3.hienthi();
+    </script>
+</body>
+</html>

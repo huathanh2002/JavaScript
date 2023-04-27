@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="font-size: 30px;">
+    <label id="pro" data-gia="40000">iPhone 14</label>
+    <input type="number" id="qty">
+    <button onclick="tinhToan();">Ok</button>
+    <hr>
+    <h2>Name: <span id="name">?</span></h2>
+    <h3>Amount: <span id="tien">?</span></h3>
+
+    <script>
+        function tinhToan() {
+            var pro = document.getElementById("pro");//lấy phần tử có id=pro
+            var gia = pro.getAttribute("data-gia");//lấy thuộc tính data-gia của đối tượng pro
+            var name = pro.innerText;//lấy nội dung của đối tượng pro
+            var soLuong = qty.value;//lấy giá trị của đối tượng input
+            var thanhTien = soLuong * gia;//tính thành tiền
+            document.getElementById("name").innerText = name;//đưa tên sản phẩm thay thế vào ? của id name
+            document.getElementById("tien").innerText = thanhTien;// đưa thành tiền thay thế vào? của id tiền
+        }
+    </script>
+</body>
+
+</html>

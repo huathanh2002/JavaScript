@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="tong">
+        <!--   <img name id="anh1" class="banner" src="img1/anh1.jpg" alt="" style="border-radius: 5%;">--->
+        <div class="mySlides">
+            <img class="banner" src="img1/anh0.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh1.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh2.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh3.jpg">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="assignment.html" target="">trang chủ </a></li>
+                <li><a href="dangKi.html" target="">đăng ký </a></li>
+                <li><a href="muaHang.html" target=""> mua hàng </a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <center>
+            <hr>
+            <h1>Đăng kí thành viên shop thú cưng</h1>
+            <hr>
+            <div style="font-size: 20px;">
+                <b style="color: red;">Đăng kí ngay ưu đãi lớn !</b>
+                <form action="" onsubmit="return datMua()">
+                    <label for="">Họ và Tên</label>
+                    <input type="text" id="KHinput">
+                    <span id="KHloi"></span>
+                    <br>
+                    <label for="">Loại Tài Khoản</label>
+                    <select name="" id="" onchange="chonLoai()">
+                        <option value="0" name="loaihang">Loại Tài Khoản</option>
+                        <option value="1" name="loaihang">Loại VIP I</option>
+                        <option value="2" name="loaihang">Loại VIP II</option>
+                        <option value="3" name="loaihang">Loại VIP III</option>
+                    </select>
+                    <span id="loiLoaiHang"></span>
+                    <br>
+
+                    <label for="">Tuổi</label>
+                    <input style="width: 50px;" type="number" id="soLuong">
+                    <span id="loiSL"></span>
+
+
+                    <br>
+                    <label for="">giới tính</label>
+                    <input type="radio" name="noiNhanhang">Nam
+                    <input type="radio" name="noiNhanhang">Nữ
+                    <span id="loinoinhanhang"></span>
+                    <br>
+
+                    <br>
+                    <button onsubmit="return datMua()">Đăng Kí</button>
+                </form>
+            </div>
+        </center>
+    </div>
+
+    <script>
+        var bannerIndex = 0;
+        showBanner();
+
+        function showBanner() {
+            var i;
+            var banners = document.getElementsByClassName("mySlides");
+            for (i = 0; i < banners.length; i++) {
+                banners[i].style.display = "none";
+            }
+            bannerIndex++;
+            if (bannerIndex > banners.length) {
+                bannerIndex = 1
+            }
+            banners[bannerIndex - 1].style.display = "block";
+            setTimeout(showBanner, 2000); // thay đổi thời gian chạy các đoạn ảnh bìa tại đây
+        }
+        ////////
+        //ktra nhập
+        function datMua() {
+            var flag = true;
+            //khách
+            if (document.getElementById("KHinput").value == "") {
+                document.getElementById("KHloi").innerHTML = "--Bạn chưa nhập họ tên !";
+                flag = false;
+            } else {
+                document.getElementById("KHloi").innerHTML = "";
+            }
+            // 
+            if (document.getElementsByName("loaihang")[0].selected) {
+                document.getElementById("loiLoaiHang").innerHTML = "--Bạn chưa chọn loại tài khoản !";
+                flag = false;
+            } else {
+                document.getElementById("loiLoaiHang").innerHTML = "";
+
+            }
+            //số lượng
+            if (document.getElementById("soLuong").value <= 0) {
+                document.getElementById("loiSL").innerHTML = "--Bạn chưa nhập tuổi !";
+                flag = false;
+            } else {
+                document.getElementById("loiSL").innerHTML = "";
+
+            }
+            //nơi nhận hàng
+            var check = document.getElementsByName("noiNhanhang");
+            if (!check[0].checked && !check[1].checked) {
+                document.getElementById("loinoinhanhang").innerHTML = "--Bạn chưa chọn giới tính !";
+                flag = false;
+            } else {
+                document.getElementById("loinoinhanhang").innerHTML = "";
+
+            }
+            if (flag == true) {
+                alert("Đăng kí tài khoản thành công !");
+            }
+            return flag;
+        }
+    </script>
+</body>
+
+</html>

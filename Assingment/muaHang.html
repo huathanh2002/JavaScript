@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            margin: auto;
+            width: 500px;
+            box-shadow: 9px;
+
+        }
+
+        body {
+            background-color: rgb(235, 248, 244);
+        }
+
+        .title {
+            color: rgb(126, 188, 18);
+            text-shadow: 2px;
+        }
+
+        button:hover {
+            color: aqua;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tong">
+        <!--   <img name id="anh1" class="banner" src="img1/anh1.jpg" alt="" style="border-radius: 5%;">--->
+        <div class="mySlides">
+            <img class="banner" src="img1/anh0.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh1.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh2.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh3.jpg">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="assignment.html" target="">trang chủ </a></li>
+                <li><a href="dangKi.html" target="">đăng ký </a></li>
+                <li><a href="muaHang.html" target=""> mua hàng </a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <h3 class="title">
+        <center>Danh mục Thú Cưng</center>
+    </h3>
+    <table border="1">
+        <tr>
+            <td>Chó Alaska</td>
+            <td>$2700</td>
+            <td> <button onclick="them(this)">Thêm</button></td>
+        </tr>
+        <tr>
+            <td>Chó Tây</td>
+            <td>$1500</td>
+            <td> <button onclick="them(this)">Thêm</button></td>
+        </tr>
+        <tr>
+            <td>Chó Phú Quốc </td>
+            <td>$1200</td>
+            <td> <button onclick="them(this)">Thêm</button></td>
+        </tr>
+        <tr>
+            <td> Chó Bắc Kinh </td>
+            <td>$1700</td>
+            <td> <button class="them" onclick="them(this)">Thêm</button></td>
+        </tr>
+
+    </table>
+    <h3 class="title">
+        <center>Giỏ hàng của bạn</center>
+    </h3>
+    <div id="not-empty">
+        <table border="1" id="cart"></table>
+        <h3>
+            <center class="title">TỔNG SỐ TIỀN: $<span id="tong"></span>0</center>
+        </h3>
+
+    </div>
+
+    <script>
+        var bannerIndex = 0;
+        showBanner();
+
+        function showBanner() {
+            var i;
+            var banners = document.getElementsByClassName("mySlides");
+            for (i = 0; i < banners.length; i++) {
+                banners[i].style.display = "none";
+            }
+            bannerIndex++;
+            if (bannerIndex > banners.length) {
+                bannerIndex = 1
+            }
+            banners[bannerIndex - 1].style.display = "block";
+            setTimeout(showBanner, 2000);
+        }
+        //////
+        function them(button) {
+            var row = button.parentElement.parentElement.cloneNode(true);
+            var btnXoa = row.getElementsByTagName("button")[0];
+            btnXoa.innerText = "Xoá";
+            btnXoa.setAttribute('onclick', 'xoa(this)');
+            document.getElementById("cart").appendChild(row);
+            tinhtong();
+        }
+        function xoa(button) {
+            var row = button.parentElement.parentElement;
+            document.getElementById("cart").removeChild(row);
+            tinhtong();
+        }
+        function tinhtong() {
+            var cart = document.getElementById("cart");
+            var rows = cart.getElementsByTagName("tr");
+            var tong = 0;
+            for (let i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var price = cells[1].innerText.substring(1);
+                tong += Number(price);
+
+            }
+            document.getElementById("tong").innerText = tong;
+        }
+    </script>
+</body>
+
+</html>

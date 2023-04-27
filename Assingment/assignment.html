@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="tong">
+        <!--   <img name id="anh1" class="banner" src="img1/anh1.jpg" alt="" style="border-radius: 5%;">--->
+        <div class="mySlides">
+            <img class="banner" src="img1/anh0.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh1.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh2.jpg">
+        </div>
+        <div class="mySlides">
+            <img class="banner" src="img1/anh3.jpg">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="assignment.html" target="">trang chủ </a></li>
+                <li><a href="dangKi.html" target="">đăng ký </a></li>
+                <li><a href="muaHang.html" target=""> mua hàng </a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <center>
+            <h1>Shop Thú Cưng Lớn Nhất Miền Bắc</h1>
+        </center>
+    </div>
+    <div class="container">
+        <img style="border-radius: 10px;" id="anh" src="img/anh0.jpg" width="500px" height="400px" id="img ">
+
+        <div class="btn">
+            <button onclick="anhDau()">Ảnh đầu</button>
+            <button onclick="TroLai()">Trở lại</button>
+            <button onclick="NEXT()">Tiếp</button>
+
+            <button onclick="anhCuoi()">Ảnh cuối</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+        var bannerIndex = 0;
+        showBanner();
+
+        function showBanner() {
+            var i;
+            var banners = document.getElementsByClassName("mySlides");
+            for (i = 0; i < banners.length; i++) {
+                banners[i].style.display = "none";
+            }
+            bannerIndex++;
+            if (bannerIndex > banners.length) {
+                bannerIndex = 1
+            }
+            banners[bannerIndex - 1].style.display = "block";
+            setTimeout(showBanner, 2000); // thay đổi thời gian chạy các đoạn ảnh bìa tại đây
+        }
+    </script>
+</body>
+
+</html>
