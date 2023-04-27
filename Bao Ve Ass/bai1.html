@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bài 1</title>
+</head>
+
+<body>
+    <div>
+        <img src="img/anh0.jpg" id="anh" alt="">
+        <br>
+        <button onclick="pre()">
+            PRE
+        </button>
+        <button onclick="stop()">
+            STOP
+        </button>
+        <button onclick="start()">
+            START
+        </button>
+        <button onclick="next()">
+            NEXT
+        </button>
+
+    </div>
+    <script>
+        var mangAnh = [];
+        var currentIndex = 0;
+        var autoslide;
+        for (var i = 0; i <= 2; i++) {
+            mangAnh[i] = new Image();
+            mangAnh[i].src = "img/anh" + i + ".jpg";
+        }
+        auto();
+        function auto() {
+            document.getElementById("anh").src = mangAnh[currentIndex].src;
+            if (currentIndex == 2) {
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+            autoslide = setTimeout(auto, 1000);
+        }
+        function stop() {
+            clearTimeout(autoslide);
+        }
+        function start() {
+            auto();
+        }
+        function pre() {
+            clearTimeout(autoslide);
+            if (currentIndex == 0) {
+                currentIndex = 2
+            } else {
+                currentIndex--;
+            }
+            document.getElementById("anh").src = mangAnh[currentIndex].src;
+        }
+        function next() {
+            clearTimeout(autoslide);
+            if (currentIndex == 2) {
+                currentIndex = 0
+            } else {
+                currentIndex++;
+            }
+            document.getElementById("anh").src = mangAnh[currentIndex].src;
+        }
+    </script>
+</body>
+
+</html>

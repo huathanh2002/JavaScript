@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bài 2</title>
+</head>
+
+<body>
+    <div>
+        <form action="" onsubmit="return dangNhap()">
+            <label for="">
+                <h3>ĐĂNG NHẬP</h3>
+            </label>
+
+            <label for="">Đăng nhập bằng email</label>
+            <br>
+            <input type=" text" id="inputEmail">
+            <span id="loiEmail"></span>
+            <br>
+            <label for="">Mật khẩu</label>
+            <br>
+            <input type="text" id="inputPass">
+            <span id="loiPass"></span>
+            <br>
+            <br>
+            <button onsubmit="return dangNhap()">ĐĂNG NHẬP</button>
+        </form>
+    </div>
+    <script>
+        function dangNhap() {
+            var check = true;
+            //email
+            var email = document.getElementById("inputEmail");
+            if (email.value == "") {
+                document.getElementById("loiEmail").innerHTML = "Bạn chưa nhập email !";
+                check = false;
+            } else if (email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1) {
+                document.getElementById("loiEmail").innerHTML = "email không đúng định dạng(email gồm @ và .) !";
+                check = false;
+            } else {
+                document.getElementById("loiEmail").innerHTML = "";
+            }
+            //pass
+
+            var kt = /^(?=.*[A-Z]).{6,20}$/;
+            var pass = document.getElementById("inputPass");
+            if (pass.value == "") {
+                document.getElementById("loiPass").innerHTML = "Bạn chưa nhập mật khẩu !";
+                check = false;
+            } else if (!kt.test(pass.value)) {
+                document.getElementById("loiPass").innerHTML = "Mật khẩu ít nhất 6 kí tự và không quá 20 kí tự , có ít nhất 1 kí tự viết hoa";
+                check = false;
+            } else {
+                document.getElementById("loiPass").innerHTML = "";
+
+            }
+            //button
+            if (check == true) {
+                alert("Đăng nhập thành công !");
+            }
+            return check;
+        }
+    </script>
+</body>
+
+</html>
